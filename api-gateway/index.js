@@ -13,6 +13,13 @@ const orderService = new cote.Requester({ name: 'order service', key: 'orders' }
 
 const deliveryService = new cote.Requester({ name: 'delivery service', key: 'deliveries' })
 
+const customerService = new cote.Requester({ name: 'customer service', key: 'customers' })
+
+app.get('/customers', async (req, res) => {
+    const customers = await customerService.send({ type: 'list' })
+    res.send(customers);
+})
+
 app.get('/restaurants', async (req, res) => {
     const restaurants = await restaurantService.send({ type: 'list' })
     res.send(restaurants);
