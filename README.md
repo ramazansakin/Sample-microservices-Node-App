@@ -11,7 +11,7 @@ Make sure you have the latest Docker and docker-compose installed.
 You can clone this repository here:
 
 ```
-git clone git@github.com:dashersw/microservices-workshop.git
+git clone git@github.com:ramazansakin/Sample-microservices-Node-App.git
 ```
 
 ## App Quickstart
