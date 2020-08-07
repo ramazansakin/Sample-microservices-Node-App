@@ -16,11 +16,16 @@ git clone git@github.com:ramazansakin/Sample-microservices-Node-App.git
 
 ## App Quickstart
 
-### Start the App
+### Start all services
 
 ```
-cd microservices-workshop
 docker-compose up
+```
+
+### Stop all services
+
+```
+docker-compose down
 ```
 
 This runs the app and any changes to the microservices will live-reload.
