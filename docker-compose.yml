@@ -15,7 +15,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: microservices-workshop/api-gateway:dev
+    image: microservices-rsakin/api-gateway:dev
     restart: on-failure
     environment:
       - VIRTUAL_HOST=api-gateway.app.com
@@ -24,11 +24,20 @@ services:
     volumes:
       - ./api-gateway:/app/src
 
+  customer-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: microservices-rsakin/customer-service:dev
+    restart: on-failure
+    volumes:
+      - ./customer-service:/app/src
+
   delivery-service:
     build:
       context: .
       dockerfile: Dockerfile
-    image: microservices-workshop/delivery-service:dev
+    image: microservices-rsakin/delivery-service:dev
     restart: on-failure
     volumes:
       - ./delivery-service:/app/src
@@ -37,7 +46,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: microservices-workshop/order-service:dev
+    image: microservices-rsakin/order-service:dev
     restart: on-failure
     volumes:
       - ./order-service:/app/src
@@ -46,7 +55,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: microservices-workshop/restaurants-service:dev
+    image: microservices-rsakin/restaurants-service:dev
     restart: on-failure
     volumes:
       - ./restaurants-service:/app/src
