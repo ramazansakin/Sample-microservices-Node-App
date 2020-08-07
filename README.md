@@ -1,6 +1,6 @@
 # Microservices with Node.js and Dockerizing
 
-Sample microservices implementation with Node.js and Dockerizing&composing all services
+Sample microservices implementation with Node.js and Dockerizing&composing all services.
 
 ## Requirements
 
@@ -30,7 +30,7 @@ docker-compose down
 
 This runs the app and any changes to the microservices will live-reload.
 
-### Test example request
+### Test example requests
 
 ```
 node test.js
