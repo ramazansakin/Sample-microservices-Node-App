@@ -1,6 +1,10 @@
 # Microservices with Node.js and Dockerizing
 
-Sample microservices implementation with Node.js and Dockerizing&composing all services.
+Sample microservices implementation with Node.js and Dockerizing&composing all services. Also app shows how 
+you bind api on gateway or create seperated microservices via seperated databases such as customer-service.
+You can check out the customer-service and also ather gateway-services and determine which architecture is good
+for you, you can develop others. Other services has not all crud ops, but easy to develop as you can see. These
+are just samples to show usages, not a complete project :). Thanks
 
 ## Requirements
 
