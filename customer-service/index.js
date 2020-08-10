@@ -1,16 +1,36 @@
+const express = require('express');
+const bodyParser = require('body-parser');
 const cote = require('cote')
+const app = express();
+// Configure the db
+const dbConfig = require('./config/mongo-config.js');
+const mongoose = require('mongoose');
 
-const customerService = new cote.Responder({ name: 'customer responder', key: 'customers' })
-customerService.on('*', req => req.type && console.log(req))    // on every request
+mongoose.Promise = global.Promise;
 
-const customers = []
-let idCounter = 0
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json())
 
-customerService.on('create customer', req => {
-    const customer = { id: idCounter++, username: req.username, orderId : req.orderId  }
+const customers = require('./app/controllers/customer-resource.js');
 
-    deliveries.push(customer)
-    return Promise.resolve(customer)
-})
+// Connect to the db
+mongoose.connect(dbConfig.url, {
+	useNewUrlParser: true
+}).then(() => {
+    console.log("Successfully connected to the customer-database");    
+}).catch(err => {
+    console.log('Could not connect to the customer-database. Exiting now...', err);
+    process.exit();
+});
 
-customerService.on('list', req => Promise.resolve(customers))
+// define a base route message
+app.get('/', (req, res) => {
+    res.json({"message": "Welcome to Customer-Service!"});
+});
+
+require('./app/routes/routes.js')(app);
+
+// listen for requests
+app.listen(3001, () => {
+    console.log("Customer-Service is listening on port 3001");
+});
