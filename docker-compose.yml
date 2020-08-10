@@ -1,5 +1,12 @@
-version: '3'
+version: '3.7'
 services:
+  mongodb:
+    image: mongo
+    ports:
+      - "27017:27017"
+    networks:
+      - nodeapp-network
+  
   lb:
     image: dockercloud/haproxy
     links:
@@ -30,8 +37,14 @@ services:
       dockerfile: Dockerfile
     image: microservices-rsakin/customer-service:dev
     restart: on-failure
+    ports:
+      - 3001:3001
     volumes:
       - ./customer-service:/app/src
+    networks:
+      - nodeapp-network
+    depends_on: 
+      - mongodb
 
   delivery-service:
     build:
@@ -59,3 +72,7 @@ services:
     restart: on-failure
     volumes:
       - ./restaurants-service:/app/src
+
+networks:
+  nodeapp-network:
+    driver: bridge
